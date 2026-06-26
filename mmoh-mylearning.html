@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>올클래스 · 내 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root{
+    --bg:#F3F5F7;--card:#FFFFFF;--ink:#1A2B36;--ink-soft:#6B7A85;--ink-mute:#97A4AC;
+    --line:#E6EAED;--line-soft:#EFF2F4;--red:#D9332A;--red-dk:#B72519;
+    --amber:#FF9F1C;--ok:#1E8E5A;--violet:#6C5CE7;--blue:#2d6fe0;
+    --radius:14px;--shadow-sm:0 2px 8px rgba(22,43,54,.06);--shadow:0 8px 24px rgba(22,43,54,.10);
+    --gnb-h:60px;--font:'Pretendard','Noto Sans KR',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .display{font-family:'Black Han Sans',sans-serif;font-weight:400}
+  button{font-family:inherit;cursor:pointer;color:inherit}
+  a{color:inherit;text-decoration:none}
+  ul{margin:0;padding:0;list-style:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  .gnb{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line)}
+  .gnb-in{display:flex;align-items:center;gap:18px;height:var(--gnb-h)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:18px}
+  .brand .pmark{width:28px;height:28px}
+  .gnb-menu{display:flex;gap:2px;margin-left:8px}
+  .gnb-menu a{padding:8px 13px;border-radius:8px;font-size:15px;font-weight:700;color:var(--ink-soft)}
+  .gnb-menu a.active{color:var(--red-dk)}
+  .gnb-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+  .icon-btn{border:0;background:none;font-size:20px;color:var(--ink-soft);width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .user-chip{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px}
+  .user-chip .out{border:0;background:none;color:var(--red);font-weight:700;font-size:13px;text-decoration:underline}
+
+  .ph{background:#fff;border-bottom:1px solid var(--line);padding:28px 0 0}
+  .ph h1{font-size:26px;margin:0 0 4px;font-weight:900}
+  .ph p{color:var(--ink-soft);margin:0 0 20px;font-size:14px}
+  .ph-tabs{display:flex;gap:4px}
+  .ph-tabs button{background:none;border:0;padding:13px 16px;font-weight:800;font-size:15px;color:var(--ink-soft);border-bottom:3px solid transparent;margin-bottom:-1px}
+  .ph-tabs button.active{color:var(--ink);border-color:var(--red)}
+
+  main{padding:26px 0 80px}
+
+
+  .cgroup{margin-bottom:34px}
+  .cg-head{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .cg-head .clogo{width:38px;height:38px;border-radius:11px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line)}
+  .cg-head h2{font-size:18px;font-weight:900;margin:0;display:flex;align-items:center;gap:5px}
+  .cg-head h2 .vf{color:var(--violet);font-size:14px}
+  .cg-head .cnt{font-size:13px;color:var(--ink-soft);font-weight:700}
+  .cg-head .gview{margin-left:auto;font-size:13px;font-weight:700;color:var(--ink-soft);background:none;border:0}
+  .cg-head .gview:hover{color:var(--ink)}
+
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
+  .pc-head{display:flex;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
+  .pc-thumb{width:120px;height:74px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .pc-thumb .st{position:absolute;top:7px;left:7px;background:var(--ok);color:#fff;font-weight:800;font-size:10px;padding:3px 7px;border-radius:5px}
+  .pc-info{flex:1;min-width:200px}
+  .pc-info .ch{display:inline-block;font-size:12px;font-weight:800;color:var(--violet);background:#efedfd;padding:2px 9px;border-radius:5px;margin-bottom:6px}
+  .pc-info h3{margin:0 0 10px;font-size:18px;font-weight:800}
+  .pc-cta{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .btn-red{background:var(--red);color:#fff;border:0;padding:12px 20px;border-radius:10px;font-weight:800;font-size:14px;white-space:nowrap}
+  .btn-red:hover{background:var(--red-dk)}
+
+  .pc-body{padding:6px 20px 20px}
+  .acc{border-top:1px solid var(--line-soft)}
+  .acc-head{width:100%;background:none;border:0;display:flex;align-items:center;justify-content:space-between;padding:16px 2px;font-weight:800;font-size:15px}
+  .acc-head .l{display:flex;align-items:center;gap:9px}
+  .acc-head .l .tg{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .acc-head .cnt{font-size:12px;color:var(--ink-mute);font-weight:700;margin-left:4px}
+  .acc-head .pm{font-family:'Black Han Sans';color:var(--ink-soft);font-size:18px;transition:.2s}
+  .acc.open .acc-head .pm{transform:rotate(45deg);color:var(--red)}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .acc.open .acc-body{max-height:1400px}
+  .acc-inner{padding:2px 0 16px}
+  .tg-video{background:#fdeceb;color:var(--red)}.tg-doc{background:#eaf2f7;color:#2c6e92}.tg-op{background:#fff7e6;color:#b8860b}
+
+  .vrow{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:14px;cursor:pointer}
+  .vrow:hover{background:var(--bg)}
+  .vrow .vst{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:800}
+  .vst.done{background:var(--ok);color:#fff}.vst.todo{background:#fff;border:2px solid var(--line);color:var(--ink-mute)}
+  .vrow .vt{flex:1;font-weight:600}.vrow .vt small{display:block;color:var(--ink-mute);font-weight:500;font-size:12px;margin-top:1px}
+  .vrow .vdur{color:var(--ink-mute);font-size:13px;font-weight:600;flex-shrink:0}
+  .vrow .vplay{font-weight:800;font-size:13px;flex-shrink:0;color:var(--red-dk)}
+  .vrow .vst.done ~ .vplay{color:var(--ink-mute)}
+  .vsummary{font-size:13px;color:var(--ink-soft);font-weight:700}
+
+  .res{display:flex;align-items:center;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;font-size:14px;font-weight:700;cursor:pointer}
+  .res:hover{border-color:var(--ink);background:#fafcfb}
+  .res .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+  .res .meta{flex:1;min-width:0}.res .meta small{display:block;color:var(--ink-soft);font-weight:500;font-size:12px;margin-top:1px}
+  .res .act{margin-left:auto;color:var(--red-dk);font-weight:800;font-size:13px;flex-shrink:0}
+  .ic-doc{background:#eaf2f7}.ic-kakao{background:#ffe600}.ic-zoom{background:#e8f0fe}.ic-guide{background:#eef0ea}
+  .op-note{font-size:13px;color:var(--ink-soft);background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:12px;line-height:1.6}
+
+  .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 24px;border-radius:11px;font-weight:700;box-shadow:var(--shadow);z-index:200;opacity:0;pointer-events:none;transition:.25s;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:760px){
+    :root{--gnb-h:56px}
+    .gnb-menu,.gnb-right .icon-btn{display:none}
+    .wrap{padding:0 18px}
+
+    .ph h1{font-size:22px}
+    .pc-head{gap:13px}.pc-thumb{width:84px;height:54px}
+    .pc-info{min-width:0;flex-basis:58%}.pc-info h3{font-size:16px}
+    .pc-cta{flex-direction:row;flex-wrap:wrap;align-items:center;width:100%;margin-top:4px}
+    .pc-cta .btn-red{flex:1}
+    .ph-tabs button{flex:1}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="gnb"><div class="wrap gnb-in">
+  <a class="brand" href="#"><span class="pmark" id="pmark"></span>올클래스</a>
+  <nav class="gnb-menu"><a href="#">홈</a><a href="#" class="active">내 학습</a><a href="#">고객센터</a></nav>
+  <div class="gnb-right">
+    <button class="icon-btn" aria-label="장바구니">🛒</button>
+    <div class="user-chip"><span>지훈</span> 님<button class="out" onclick="toast('로그아웃 (예시)')">로그아웃</button></div>
+  </div>
+</div></header>
+
+<div class="ph"><div class="wrap">
+  <h1>내 학습</h1>
+  <p>구매한 클래스를 크리에이터별로 모아 보여드립니다.</p>
+  <div class="ph-tabs">
+    <button class="active" onclick="setTab(this)">수강 중 3</button>
+    <button onclick="setTab(this)">전체 3</button>
+    <button onclick="setTab(this)">완료 0</button>
+  </div>
+</div></div>
+
+<main><div class="wrap">
+  <div id="groups"></div>
+</div></main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function houseSVG(s,o){o=o||{};const ink=o.ink||'#1A2B36',roof=o.roof||'#D9332A';
+  return `<svg width="${s}" height="${s*1.05}" viewBox="0 0 100 105"><polygon points="50,4 92,40 8,40" fill="${roof}"/><rect x="16" y="40" width="68" height="58" fill="none" stroke="${ink}" stroke-width="6"/>${o.text===false?'':`<text x="50" y="64" text-anchor="middle" font-family="'Black Han Sans'" font-size="22" fill="${ink}">MM</text><text x="50" y="88" text-anchor="middle" font-family="'Black Han Sans'" font-size="22" fill="${ink}">OH</text>`}</svg>`;}
+function platMark(s){return `<svg width="${s}" height="${s}" viewBox="0 0 40 40"><rect x="6" y="6" width="22" height="22" rx="7" fill="#D9332A"/><rect x="14" y="14" width="20" height="20" rx="7" fill="#1A2B36" opacity="0.92"/></svg>`;}
+function creatorLogo(c,size){
+  if(c.logoType==='house')return houseSVG(size*0.82,{ink:c.themeDeep});
+  return `<div style="width:${size}px;height:${size}px;background:${c.theme};display:flex;align-items:center;justify-content:center;font-family:'Black Han Sans';font-size:${size*0.4}px;color:${c.themeDeep}">${c.monogram}</div>`;
+}
+document.getElementById('pmark').innerHTML=platMark(28);
+
+const vIcon={done:'✓',todo:'▶'},vSub={done:'시청 완료',todo:'재생하기'};
+
+const groups=[
+  {creator:{name:'애매모홈',verified:true,logoType:'house',themeDeep:'#1c3a4a'},
+   classes:[
+     {title:'경매 낙찰 기초반 · 4주 완성',cohort:3,grad:'linear-gradient(135deg,#AFD6E7,#7DB8D4)',deep:'#1c3a4a',
+      videos:[{t:'1주차 · 경매 절차와 권리의 이해',d:'88분',st:'done'},{t:'2주차 · 물건 검색과 시세 분석',d:'92분',st:'done'},{t:'3주차 · 입찰표 작성 실습',d:'76분',st:'todo'},{t:'4주차 · 모의 입찰 & Q&A',d:'81분',st:'todo'}],
+      files:['주차별 강의 노트(PDF)','입찰표 작성 템플릿','물건 분석 체크리스트'],
+      opGuide:'매주 화요일 저녁 8시 줌 라이브로 진행됩니다. 입장 링크는 시작 30분 전 단톡방에 안내됩니다.'},
+     {title:'권리분석 실전반 · 위험물건 거르기',cohort:2,grad:'linear-gradient(135deg,#F3C7C2,#D9332A)',deep:'#7a1812',
+      videos:[{t:'1주차 · 등기부등본 정밀 분석',d:'104분',st:'done'},{t:'2주차 · 말소기준권리',d:'97분',st:'todo'},{t:'3주차 · 대항력·우선변제 임차인',d:'89분',st:'todo'},{t:'4주차 · 위험 물건 사례 스터디',d:'95분',st:'todo'}],
+      files:['권리분석 워크북(PDF)','사례 50선 자료집'],
+      opGuide:'매주 토요일 오전 10시 줌 라이브(120분)로 진행되며, 실습 사건 자료는 라이브 전날 단톡방에 배포됩니다.'},
+   ]},
+  {creator:{name:'머니로그',verified:true,logoType:'mono',monogram:'ML',theme:'#FFD9A8',themeDeep:'#7a4d12'},
+   classes:[
+     {title:'직장인 주식 투자 4주 클래스',cohort:5,grad:'linear-gradient(135deg,#FFE3BE,#F0B65C)',deep:'#7a4d12',
+      videos:[{t:'1주차 · 계좌 개설과 투자 원칙',d:'72분',st:'done'},{t:'2주차 · 종목 분석 기초',d:'84분',st:'done'},{t:'3주차 · 매매 타이밍',d:'80분',st:'done'},{t:'4주차 · 포트폴리오 관리',d:'68분',st:'todo'}],
+      files:['종목 분석 시트(Excel)','투자 원칙 체크리스트'],
+      opGuide:'매주 목요일 저녁 9시 줌 라이브로 진행됩니다. 질문은 전용 단톡방에서 상시 받습니다.'},
+   ]},
+];
+
+function render(){
+  document.getElementById('groups').innerHTML=groups.map((g,gi)=>{
+    const c=g.creator;
+    return `<div class="cgroup">
+      <div class="cg-head">
+        <span class="clogo">${creatorLogo(c,38)}</span>
+        <h2>${c.name}${c.verified?'<span class="vf">✔</span>':''}</h2>
+        <span class="cnt">클래스 ${g.classes.length}</span>
+        <button class="gview" onclick="toast('${c.name} 크리에이터 페이지로 이동 (예시)')">크리에이터 페이지 →</button>
+      </div>
+      ${g.classes.map((k,ki)=>{const id=gi+'-'+ki;const nowV=k.videos.find(v=>v.st==='now');return `
+        <div class="pcard">
+          <div class="pc-head">
+            <div class="pc-thumb" style="background:${k.grad}"><span class="st">수강 중</span>${c.logoType==='house'?houseSVG(44,{ink:k.deep,text:false}):''}</div>
+            <div class="pc-info">
+              <span class="ch">${k.cohort}기</span>
+              <h3>${k.title}</h3>
+              <div class="vsummary">전체 ${k.videos.length}강 · 완료 ${k.videos.filter(v=>v.st==='done').length}강</div>
+            </div>
+            <div class="pc-cta">
+              <button class="btn-red" onclick="toast('${nowV?nowV.t:'강의'} 재생 (예시)')">이어서 학습</button>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div class="acc open" id="acc-${id}-0">
+              <button class="acc-head" onclick="toggleAcc('${id}-0')"><span class="l"><span class="tg tg-video">📹</span>콘텐츠 · 영상<span class="cnt">${k.videos.length}강</span></span><span class="pm">+</span></button>
+              <div class="acc-body"><div class="acc-inner">
+                ${k.videos.map(v=>`<div class="vrow" onclick="toast('${v.t} 재생 (예시)')"><span class="vst ${v.st}">${vIcon[v.st]}</span><span class="vt">${v.t}<small>${vSub[v.st]}</small></span><span class="vdur">${v.d}</span><span class="vplay">${v.st==='done'?'완료':'재생'}</span></div>`).join('')}
+              </div></div>
+            </div>
+            <div class="acc" id="acc-${id}-1">
+              <button class="acc-head" onclick="toggleAcc('${id}-1')"><span class="l"><span class="tg tg-doc">📄</span>콘텐츠 · 자료<span class="cnt">${k.files.length}개</span></span><span class="pm">+</span></button>
+              <div class="acc-body"><div class="acc-inner">
+                ${k.files.map(f=>`<div class="res" onclick="toast('&quot;${f}&quot; 다운로드 (예시)')"><span class="ic ic-doc">📄</span><span class="meta">${f}<small>강의 자료</small></span><span class="act">다운로드</span></div>`).join('')}
+              </div></div>
+            </div>
+            <div class="acc" id="acc-${id}-2">
+              <button class="acc-head" onclick="toggleAcc('${id}-2')"><span class="l"><span class="tg tg-op">💬</span>운영 안내<span class="cnt">단톡방 · 줌</span></span><span class="pm">+</span></button>
+              <div class="acc-body"><div class="acc-inner">
+                <div class="op-note">${k.opGuide}</div>
+                <div class="res" onclick="toast('단톡방으로 이동 (예시)')"><span class="ic ic-kakao">💬</span><span class="meta">수강생 단톡방 입장<small>공지 · 질문 · 다시보기 공유</small></span><span class="act">열기 →</span></div>
+                <div class="res" onclick="toast('줌 입장 링크 (예시)')"><span class="ic ic-zoom">🎥</span><span class="meta">줌(Zoom) 라이브 입장<small>매주 라이브 강의 입장 링크</small></span><span class="act">링크 →</span></div>
+                <div class="res" onclick="toast('운영 가이드 보기 (예시)')"><span class="ic ic-guide">📘</span><span class="meta">운영 가이드 · 일정 안내<small>진행 방식 · 준비물</small></span><span class="act">보기 →</span></div>
+              </div></div>
+            </div>
+          </div>
+        </div>`;}).join('')}
+    </div>`;}).join('');
+}
+function toggleAcc(key){document.getElementById('acc-'+key).classList.toggle('open');}
+function setTab(btn){document.querySelectorAll('.ph-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+let tt;function toast(m){const t=document.getElementById('toast');t.innerHTML=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2000);}
+render();
+</script>
+</body>
+</html>
